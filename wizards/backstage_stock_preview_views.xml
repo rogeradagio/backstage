@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_backstage_stock_preview_form" model="ir.ui.view">
+        <field name="name">backstage.stock.preview.form</field>
+        <field name="model">backstage.stock.preview</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="product_tmpl_id" invisible="1"/>
+                <field name="stock_sync" invisible="1"/>
+                <field name="missing_sku" invisible="1"/>
+                <field name="pending_export" invisible="1"/>
+                <div class="alert alert-secondary" role="status" invisible="stock_sync">
+                    The stock of this product is not sent to Magento.
+                </div>
+                <div class="alert alert-warning" role="status" invisible="not stock_sync or not missing_sku">
+                    Some variants have no internal reference: Magento cannot match them (SKU) and they are not sent.
+                </div>
+                <div class="text-muted mb-2" invisible="not stock_sync or not pending_export">
+                    <i class="fa fa-clock-o" title="Pending"/> Recent changes will reach Magento within a few minutes.
+                </div>
+                <field name="line_ids" nolabel="1" invisible="not stock_sync">
+                    <list>
+                        <field name="product_id" optional="show"/>
+                        <field name="source_id"/>
+                        <field name="on_hand"/>
+                        <field name="reserved_other" string="− Other sales"/>
+                        <field name="shipped_unsent" string="+ Shipped, not yet in Magento"/>
+                        <field name="sellable" class="fw-bold"/>
+                    </list>
+                </field>
+                <p class="text-muted small" invisible="not stock_sync">
+                    Web orders are not subtracted here: Magento already reserves them.
+                </p>
+                <footer>
+                    <button special="cancel" string="Close" class="btn-primary"/>
+                    <button name="action_toggle_sync" type="object" string="Stop exporting this product"
+                            class="btn-secondary" invisible="not stock_sync"
+                            groups="backstage.group_backstage_manager"/>
+                    <button name="action_toggle_sync" type="object" string="Export this product"
+                            class="btn-secondary" invisible="stock_sync"
+                            groups="backstage.group_backstage_manager"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

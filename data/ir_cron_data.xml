@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="cron_backstage_stock_dirty" model="ir.cron">
+        <field name="name">Backstage: export changed stock to Magento</field>
+        <field name="model_id" ref="model_backstage_stock"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_export_dirty()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">minutes</field>
+        <field name="active" eval="True"/>
+    </record>
+    <record id="cron_backstage_stock_full" model="ir.cron">
+        <field name="name">Backstage: full stock reconciliation with Magento</field>
+        <field name="model_id" ref="model_backstage_stock"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_export_full()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="nextcall" eval="(DateTime.now().replace(hour=3, minute=0, second=0))"/>
+        <field name="active" eval="True"/>
+    </record>
+    <record id="cron_backstage_link_pending" model="ir.cron">
+        <field name="name">Backstage: link pending orders with Magento</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_backstage_link_pending()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="nextcall" eval="(DateTime.now().replace(hour=2, minute=30, second=0))"/>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

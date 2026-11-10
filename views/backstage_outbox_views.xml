@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- "Per revisar" conté només el que necessita una persona: què ha passat i què cal fer. -->
+    <record id="view_backstage_outbox_review_list" model="ir.ui.view">
+        <field name="name">backstage.outbox.review.list</field>
+        <field name="model">backstage.outbox</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <list create="false" delete="false" decoration-warning="state == 'failed'">
+                <field name="create_date" string="Date" widget="date"/>
+                <field name="sale_order_id"/>
+                <field name="event_type"/>
+                <field name="document_ref" optional="show"/>
+                <field name="problem"/>
+                <field name="next_step"/>
+                <field name="state" column_invisible="True"/>
+                <button name="action_retry" type="object" string="Retry" icon="fa-repeat"
+                        invisible="state != 'rejected'"/>
+                <button name="action_discard" type="object" string="Discard" icon="fa-times"
+                        confirm="This event will not be sent to Magento. Discard it?"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_backstage_outbox_list" model="ir.ui.view">
+        <field name="name">backstage.outbox.list</field>
+        <field name="model">backstage.outbox</field>
+        <field name="arch" type="xml">
+            <list create="false" delete="false" decoration-muted="state in ('sent', 'discarded')">
+                <field name="create_date" string="Date"/>
+                <field name="sale_order_id"/>
+                <field name="event_type"/>
+                <field name="notification_mode" optional="show"/>
+                <field name="attempts" optional="hide"/>
+                <field name="http_status" optional="hide"/>
+                <field name="event_id" optional="hide"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'sent'"
+                       decoration-info="state == 'pending'"
+                       decoration-warning="state == 'failed'"
+                       decoration-danger="state == 'rejected'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_backstage_outbox_form" model="ir.ui.view">
+        <field name="name">backstage.outbox.form</field>
+        <field name="model">backstage.outbox</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false" delete="false">
+                <header>
+                    <button name="action_retry" type="object" string="Retry" class="btn-primary"
+                            invisible="state not in ('rejected', 'discarded')"/>
+                    <button name="action_discard" type="object" string="Discard"
+                            invisible="state not in ('rejected', 'failed')"
+                            confirm="This event will not be sent to Magento. Discard it?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="pending,sent"/>
+                </header>
+                <sheet>
+                    <div class="alert alert-danger" role="alert" invisible="state != 'rejected'">
+                        <p class="mb-1"><field name="problem" nolabel="1" class="fw-bold"/></p>
+                        <field name="next_step" nolabel="1"/>
+                    </div>
+                    <div class="alert alert-warning" role="alert" invisible="state != 'failed'">
+                        <p class="mb-1"><field name="problem" nolabel="1"/></p>
+                        <field name="next_step" nolabel="1"/>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="display_name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sale_order_id"/>
+                            <field name="document_ref"/>
+                            <field name="notification_mode"/>
+                        </group>
+                        <group>
+                            <field name="create_date" string="Created on"/>
+                            <field name="sent_at" invisible="not sent_at"/>
+                            <field name="attempts" invisible="not attempts"/>
+                        </group>
+                    </group>
+                    <notebook groups="backstage.group_backstage_manager">
+                        <page string="Technical details" name="technical">
+                            <group>
+                                <group>
+                                    <field name="event_id"/>
+                                    <field name="http_status" invisible="not http_status"/>
+                                    <field name="error_code" invisible="not error_code"/>
+                                </group>
+                                <group>
+                                    <field name="magento_document_ids" invisible="not magento_document_ids"/>
+                                </group>
+                            </group>
+                            <field name="response" invisible="1"/>
+                            <label for="envelope_display" string="Sent to Magento"/>
+                            <field name="envelope_display" nolabel="1" class="font-monospace small"/>
+                            <label for="response_display" string="Magento answer" invisible="not response"/>
+                            <field name="response_display" nolabel="1" class="font-monospace small" invisible="not response"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_backstage_outbox_search" model="ir.ui.view">
+        <field name="name">backstage.outbox.search</field>
+        <field name="model">backstage.outbox</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sale_order_id"/>
+                <field name="event_id"/>
+                <filter name="rejected" string="Rejected" domain="[('state', '=', 'rejected')]"/>
+                <filter name="failed" string="Retrying" domain="[('state', '=', 'failed')]"/>
+                <filter name="pending" string="Queued" domain="[('state', '=', 'pending')]"/>
+                <filter name="sent" string="Sent" domain="[('state', '=', 'sent')]"/>
+                <separator/>
+                <filter name="notified" string="Customer notified" domain="[('notification_mode', '=', 'send')]"/>
+                <separator/>
+                <filter name="today" string="Today"
+                        domain="[('create_date', '>=', datetime.datetime.combine(context_today(), datetime.time(0, 0, 0)))]"/>
+                <filter name="create_date" string="Date" date="create_date"/>
+                <group>
+                    <filter name="group_event" string="Event" context="{'group_by': 'event_type'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_order" string="Order" context="{'group_by': 'sale_order_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_backstage_review" model="ir.actions.act_window">
+        <field name="name">To review</field>
+        <field name="res_model">backstage.outbox</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">['|', ('state', '=', 'rejected'), '&amp;', ('state', '=', 'failed'), ('attempts', '>=', 5)]</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_backstage_outbox_review_list')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_backstage_outbox_form')})]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Everything reached Magento</p>
+            <p>Events Magento rejected, or that have been retrying for a while, show up here
+               with what happened and what to do.</p>
+        </field>
+    </record>
+
+    <record id="action_backstage_outbox" model="ir.actions.act_window">
+        <field name="name">Events</field>
+        <field name="res_model">backstage.outbox</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">No events sent to Magento yet</p>
+            <p>Every pickup, shipment, invoice or cancellation of a web order sends an event to Magento.</p>
+        </field>
+    </record>
+</odoo>

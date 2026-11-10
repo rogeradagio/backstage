@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- filtrar les activitats que obre Backstage per usuari. -->
+    <record id="mail_activity_type_backstage" model="mail.activity.type">
+        <field name="name">Magento</field>
+        <field name="summary">Check Magento sync</field>
+        <field name="icon">fa-exchange</field>
+        <field name="delay_count">0</field>
+        <field name="sequence">90</field>
+    </record>
+</odoo>

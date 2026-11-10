@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_warehouse_form_backstage" model="ir.ui.view">
+        <field name="name">stock.warehouse.form.backstage</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Web pickup" name="backstage_pickup" groups="backstage.group_backstage_user">
+                    <field name="backstage_pickup_ready" invisible="1"/>
+                    <p class="text-muted">
+                        Transfers that feed web pickup orders of this store go through a transit location,
+                        and the store validates a web receipt when the goods arrive. Until then they count
+                        neither as store stock nor in Magento.
+                    </p>
+                    <group invisible="not backstage_pickup_ready">
+                        <field name="backstage_transit_location_id" readonly="1"/>
+                        <field name="backstage_receipt_type_id" readonly="1"/>
+                    </group>
+                    <button name="action_backstage_setup_pickup" type="object" string="Set up web pickup"
+                            class="btn-secondary" invisible="backstage_pickup_ready"
+                            groups="stock.group_stock_manager,backstage.group_backstage_manager"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

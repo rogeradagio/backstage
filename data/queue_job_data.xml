@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- canal propi amb una sola execució simultània, de moment no ens emocionem. -->
+    <record id="channel_backstage" model="queue.job.channel">
+        <field name="name">backstage</field>
+        <field name="parent_id" ref="queue_job.channel_root"/>
+    </record>
+    <record id="job_function_backstage_outbox_send" model="queue.job.function">
+        <field name="model_id" ref="model_backstage_outbox"/>
+        <field name="method">send_to_magento</field>
+        <field name="channel_id" ref="channel_backstage"/>
+        <field name="retry_pattern" eval="{1: 60, 5: 300, 10: 1800}"/>
+    </record>
+</odoo>

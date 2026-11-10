@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- registre de la connexió amb Magento. -->
+    <record id="backend_magento" model="backstage.backend">
+        <field name="name">Magento</field>
+    </record>
+</odoo>

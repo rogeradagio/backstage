@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_backstage" model="ir.ui.view">
+        <field name="name">sale.order.form.backstage</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="backstage_can_notify_ready" invisible="1"/>
+                <button name="action_backstage_ready_for_pickup" type="object" string="Ready for pickup"
+                        class="btn-primary" invisible="not backstage_can_notify_ready"
+                        confirm="The customer will receive an e-mail saying the order can be collected. Continue?"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_backstage_review" type="object" class="oe_stat_button text-danger"
+                        icon="fa-exclamation-circle" invisible="not backstage_review_count"
+                        groups="backstage.group_backstage_user">
+                    <field name="backstage_review_count" widget="statinfo" string="Magento issues"/>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/list//field[@name='product_uom_qty']" position="after">
+                <field name="magento_order_item_id" optional="hide" groups="backstage.group_backstage_manager"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Magento" name="backstage" invisible="not magento_increment_id"
+                      groups="backstage.group_backstage_user">
+                    <div class="alert alert-danger d-flex align-items-center gap-3" role="alert"
+                         invisible="backstage_link_state != 'error'">
+                        <div class="flex-grow-1">
+                            <strong>Web order needs review.</strong>
+                            <field name="backstage_link_error" nolabel="1"/>
+                        </div>
+                        <button name="action_backstage_link" type="object" string="Link again" class="btn-secondary"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="magento_increment_id"/>
+                            <field name="magento_store_code"/>
+                            <field name="magento_shipping_method"/>
+                            <field name="magento_is_pickup"/>
+                        </group>
+                        <group>
+                            <field name="backstage_link_state" widget="badge"
+                                   decoration-success="backstage_link_state == 'linked'"
+                                   decoration-info="backstage_link_state == 'pending'"
+                                   decoration-danger="backstage_link_state == 'error'"/>
+                            <field name="magento_order_id" invisible="not magento_order_id"/>
+                            <button name="action_backstage_link" type="object" string="Link with Magento"
+                                    class="btn-link ps-0" colspan="2"
+                                    invisible="backstage_link_state in ('linked', 'error')"/>
+                        </group>
+                    </group>
+                    <field name="backstage_outbox_ids" readonly="1" nolabel="1">
+                        <list decoration-muted="state in ('sent', 'discarded')">
+                            <field name="create_date" string="Date"/>
+                            <field name="event_type"/>
+                            <field name="notification_mode"/>
+                            <field name="problem" optional="show"/>
+                            <field name="state" widget="badge"
+                                   decoration-success="state == 'sent'"
+                                   decoration-info="state == 'pending'"
+                                   decoration-warning="state == 'failed'"
+                                   decoration-danger="state == 'rejected'"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_list_backstage" model="ir.ui.view">
+        <field name="name">sale.order.list.backstage</field>
+        <field name="model">sale.order</field>
+        <field name="priority">90</field>
+        <field name="arch" type="xml">
+            <list create="false">
+                <field name="name"/>
+                <field name="magento_increment_id"/>
+                <field name="date_order" widget="date"/>
+                <field name="partner_id"/>
+                <field name="warehouse_id" optional="show"/>
+                <field name="magento_is_pickup" optional="show"/>
+                <field name="amount_total" optional="hide" sum="Total"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="backstage_link_state" widget="badge"
+                       decoration-success="backstage_link_state == 'linked'"
+                       decoration-info="backstage_link_state == 'pending'"
+                       decoration-danger="backstage_link_state == 'error'"/>
+                <field name="state" widget="badge" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter_backstage" model="ir.ui.view">
+        <field name="name">sale.order.search.backstage</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="magento_increment_id"/>
+            </xpath>
+            <xpath expr="//search" position="inside">
+                <separator/>
+                <filter name="web_orders" string="Web orders" domain="[('magento_increment_id', '!=', False)]"/>
+                <filter name="pickup" string="Store pickup" domain="[('magento_is_pickup', '=', True)]"/>
+                <filter name="link_error" string="Web order needs review" domain="[('backstage_link_state', '=', 'error')]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_backstage_web_orders" model="ir.actions.act_window">
+        <field name="name">Web orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('magento_increment_id', '!=', False)]</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_order_list_backstage')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('sale.view_order_form')})]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">No web orders yet</p>
+            <p>Orders that come from Magento show up here, with their link to the Magento order.</p>
+        </field>
+    </record>
+</odoo>

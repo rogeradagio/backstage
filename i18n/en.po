@@ -1,0 +1,1881 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* backstage
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-10 00:00+0000\n"
+"PO-Revision-Date: 2026-11-10 00:00+0000\n"
+"Last-Translator: Backstage\n"
+"Language-Team: en_US\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/sale_order.py:0
+#, python-format
+msgid "%(count)s Magento orders share the number %(ref)s. Fill in the store view of the order."
+msgstr "%(count)s Magento orders share the number %(ref)s. Fill in the store view of the order."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/account_move.py:0
+#, python-format
+msgid ""
+"%(doc)s was not sent to Magento: these lines have no Magento line (%(products)s). Link the order "
+"again from its Magento tab."
+msgstr ""
+"%(doc)s was not sent to Magento: these lines have no Magento line (%(products)s). Link the order "
+"again from its Magento tab."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/stock_picking.py:0
+#, python-format
+msgid ""
+"%(doc)s was not sent to Magento: these products have no Magento line (%(products)s). Link the "
+"order again from its Magento tab."
+msgstr ""
+"%(doc)s was not sent to Magento: these products have no Magento line (%(products)s). Link the "
+"order again from its Magento tab."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/stock_picking.py:0
+#, python-format
+msgid "%(product)s: sent %(sent)s, received %(received)s — %(reason)s%(note)s"
+msgstr "%(product)s: sent %(sent)s, received %(received)s — %(reason)s%(note)s"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/stock_warehouse.py:0
+#, python-format
+msgid "%s Web receipt"
+msgstr "%s Web receipt"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/sale_order.py:0
+#, python-format
+msgid "%s has no Magento order number."
+msgstr "%s has no Magento order number."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/sale_order.py:0
+#, python-format
+msgid ""
+"%s is not ready yet: the pickup transfer must be fully reserved and no transfer to the store may "
+"be pending."
+msgstr ""
+"%s is not ready yet: the pickup transfer must be fully reserved and no transfer to the store may "
+"be pending."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+#, python-format
+msgid "%s is not waiting for a retry."
+msgstr "%s is not waiting for a retry."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_stock_preview_form
+msgid "+ Shipped, not yet in Magento"
+msgstr "+ Shipped, not yet in Magento"
+
+#. module: backstage
+#: model_terms:ir.module.module,description:base.module_backstage
+msgid ""
+"<b>Configuration</b>: connection, sources, pickup stores and stock in one place, with a test mode "
+"that sends no customer e-mails."
+msgstr ""
+"<b>Configuration</b>: connection, sources, pickup stores and stock in one place, with a test mode "
+"that sends no customer e-mails."
+
+#. module: backstage
+#: model_terms:ir.module.module,description:base.module_backstage
+msgid "<b>Stock in Magento</b> on every product: what is sent to each source and why."
+msgstr "<b>Stock in Magento</b> on every product: what is sent to each source and why."
+
+#. module: backstage
+#: model_terms:ir.module.module,description:base.module_backstage
+msgid "<b>To review</b>: the only list to watch. Each item says what happened and what to do."
+msgstr "<b>To review</b>: the only list to watch. Each item says what happened and what to do."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_stock_preview_form
+msgid ""
+"<i class=\"fa fa-clock-o\" title=\"Pending\"/> Recent changes will reach Magento within a few "
+"minutes."
+msgstr ""
+"<i class=\"fa fa-clock-o\" title=\"Pending\"/> Recent changes will reach Magento within a few "
+"minutes."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.product_template_form_view_backstage
+msgid ""
+"<span class=\"o_stat_text\">Stock in</span>\n"
+"                        <span class=\"o_stat_text\">Magento</span>"
+msgstr ""
+"<span class=\"o_stat_text\">Stock in</span>\n"
+"                        <span class=\"o_stat_text\">Magento</span>"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_order_form_backstage
+msgid "<strong>Web order needs review.</strong>"
+msgstr "<strong>Web order needs review.</strong>"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid ""
+"<strong>Test mode.</strong> Everything is sent to Magento, but customers receive no e-mail.\n"
+"                        Work a few orders as usual and check that <em>To review</em> stays empty before going live."
+msgstr ""
+"<strong>Test mode.</strong> Everything is sent to Magento, but customers receive no e-mail.\n"
+"                        Work a few orders as usual and check that <em>To review</em> stays empty before going live."
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__token
+msgid "Access token"
+msgstr "Access token"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_backend__token
+msgid ""
+"Access token of the Magento integration (see the module README for the permissions it needs)."
+msgstr ""
+"Access token of the Magento integration (see the module README for the permissions it needs)."
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_source__active
+msgid "Active"
+msgstr "Active"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__activity_id
+msgid "Activity"
+msgstr "Activity"
+
+#. module: backstage
+#: model:res.groups,name:backstage.group_backstage_manager
+msgid "Administrator"
+msgstr "Administrator"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_stock_preview_line__shipped_unsent
+msgid "Already shipped in Odoo, but Magento does not know yet: it still holds them as reserved."
+msgstr "Already shipped in Odoo, but Magento does not know yet: it still holds them as reserved."
+
+#. module: backstage
+#: model:res.groups,comment:backstage.group_backstage_manager
+msgid "Also configures the Magento connection and sources, and resolves receipt incidents."
+msgstr "Also configures the Magento connection and sources, and resolves receipt incidents."
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__attempts
+msgid "Attempts"
+msgstr "Attempts"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_source__backend_id
+#: model:ir.model.fields,field_description:backstage.field_backstage_store_view__backend_id
+msgid "Backend"
+msgstr "Backend"
+
+#. module: backstage
+#: model:ir.module.module,shortdesc:base.module_backstage
+#: model:ir.ui.menu,name:backstage.menu_backstage_root
+#: model:res.groups.privilege,name:backstage.res_groups_privilege_backstage
+#: model_terms:ir.module.module,description:base.module_backstage
+msgid "Backstage"
+msgstr "Backstage"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_sale_order__backstage_can_notify_ready
+msgid "Backstage Can Notify Ready"
+msgstr "Backstage Can Notify Ready"
+
+#. module: backstage
+#: model:ir.model,name:backstage.model_backstage_client
+msgid "Backstage HTTP client for Magento"
+msgstr "Backstage HTTP client for Magento"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_stock_picking__backstage_incident_count
+msgid "Backstage Incident Count"
+msgstr "Backstage Incident Count"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_sale_order__backstage_review_count
+msgid "Backstage Review Count"
+msgstr "Backstage Review Count"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_product_product__backstage_stock_dirty
+msgid "Backstage Stock Dirty"
+msgstr "Backstage Stock Dirty"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_product_template__backstage_stock_visible
+msgid "Backstage Stock Visible"
+msgstr "Backstage Stock Visible"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_stock_picking__backstage_web_supply
+msgid "Backstage Web Supply"
+msgstr "Backstage Web Supply"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid ""
+"Backstage is not sending anything to Magento. Test the connection, map the sources\n"
+"                        and set up the pickup stores, then start the test."
+msgstr ""
+"Backstage is not sending anything to Magento. Test the connection, map the sources\n"
+"                        and set up the pickup stores, then start the test."
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_source__export_stock
+msgid ""
+"Backstage sends the sellable stock of this source. Each source must be updated by a single system:"
+" leave it unticked while another system still updates it."
+msgstr ""
+"Backstage sends the sellable stock of this source. Each source must be updated by a single system:"
+" leave it unticked while another system still updates it."
+
+#. module: backstage
+#: model:ir.cron,name:backstage.cron_backstage_stock_dirty
+msgid "Backstage: export changed stock to Magento"
+msgstr "Backstage: export changed stock to Magento"
+
+#. module: backstage
+#: model:ir.cron,name:backstage.cron_backstage_stock_full
+msgid "Backstage: full stock reconciliation with Magento"
+msgstr "Backstage: full stock reconciliation with Magento"
+
+#. module: backstage
+#: model:ir.cron,name:backstage.cron_backstage_link_pending
+msgid "Backstage: link pending orders with Magento"
+msgstr "Backstage: link pending orders with Magento"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_wizard_form
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__event_type__cancelled
+msgid "Cancelled"
+msgstr "Cancelled"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0
+#, python-format
+msgid "Cannot reach the store (%(error)s). Check the store URL."
+msgstr "Cannot reach the store (%(error)s). Check the store URL."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid ""
+"Changed products are sent every few minutes, and every night all of them.\n"
+"                                        The <em>Stock in Magento</em> button of a product shows what is sent and why."
+msgstr ""
+"Changed products are sent every few minutes, and every night all of them.\n"
+"                                        The <em>Stock in Magento</em> button of a product shows what is sent and why."
+
+#. module: backstage
+#: model:mail.activity.type,summary:backstage.mail_activity_type_backstage
+msgid "Check Magento sync"
+msgstr "Check Magento sync"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "Check the connection in Backstage → Configuration, then retry."
+msgstr "Check the connection in Backstage → Configuration, then retry."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "Check the order in Magento. If the step is no longer needed, discard it."
+msgstr "Check the order in Magento. If the step is no longer needed, discard it."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_stock_preview_form
+msgid "Close"
+msgstr "Close"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_source__source_code
+#: model:ir.model.fields,field_description:backstage.field_backstage_store_view__code
+msgid "Code"
+msgstr "Code"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__event_type__collected
+msgid "Collected"
+msgstr "Collected"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident_wizard_line__note
+msgid "Comment"
+msgstr "Comment"
+
+#. module: backstage
+#: model:ir.actions.act_window,name:backstage.action_backstage_backend
+#: model:ir.ui.menu,name:backstage.menu_backstage_configuration
+msgid "Configuration"
+msgstr "Configuration"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_wizard_form
+msgid "Confirm and validate"
+msgstr "Confirm and validate"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_backend__connection_state__ok
+msgid "Connected"
+msgstr "Connected"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0
+#, python-format
+msgid "Connected: %(views)s store views and %(sources)s sources."
+msgstr "Connected: %(views)s store views and %(sources)s sources."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Connection"
+msgstr "Connection"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__connection_message
+msgid "Connection Message"
+msgstr "Connection Message"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__connection_state
+msgid "Connection State"
+msgstr "Connection State"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__connector_available
+msgid "Connector Available"
+msgstr "Connector Available"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_form
+msgid "Created on"
+msgstr "Created on"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__event_type__credit_note_issued
+msgid "Credit note"
+msgstr "Credit note"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__notification_mode
+msgid "Customer"
+msgstr "Customer"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__notification_mode__send
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_search
+msgid "Customer notified"
+msgstr "Customer notified"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/sale_order.py:0
+msgid "Customer notified that the order is ready for pickup."
+msgstr "Customer notified that the order is ready for pickup."
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident__reason__damaged
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident_wizard_line__reason__damaged
+msgid "Damaged"
+msgstr "Damaged"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_list
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_review_list
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_search
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_list
+#: model_terms:ir.ui.view,arch_db:backstage.view_order_form_backstage
+msgid "Date"
+msgstr "Date"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__event_type__delivered
+msgid "Delivered"
+msgstr "Delivered"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__difference
+msgid "Difference"
+msgstr "Difference"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_form
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_review_list
+msgid "Discard"
+msgstr "Discard"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__state__discarded
+msgid "Discarded"
+msgstr "Discarded"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+#, python-format
+msgid "Discarded by %s."
+msgstr "Discarded by %s."
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__document_ref
+msgid "Document"
+msgstr "Document"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident__state__draft
+msgid "Draft"
+msgstr "Draft"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_web_receipt_incident__state
+msgid "Draft: declared in the wizard, but the receipt is not validated yet."
+msgstr "Draft: declared in the wizard, but the receipt is not validated yet."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_source.py:0
+msgid "Each Magento source can only be listed once."
+msgstr "Each Magento source can only be listed once."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid ""
+"Each Magento source is the stock of one Odoo location. Tick <em>Export stock</em>\n"
+"                                only on sources no other system updates: each source must be updated by a single system."
+msgstr ""
+"Each Magento source is the stock of one Odoo location. Tick <em>Export stock</em>\n"
+"                                only on sources no other system updates: each source must be updated by a single system."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_source.py:0
+msgid "Each location can only belong to one source."
+msgstr "Each location can only belong to one source."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_store_view.py:0
+msgid "Each store view can only be listed once."
+msgstr "Each store view can only be listed once."
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__envelope
+msgid "Envelope"
+msgstr "Envelope"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__envelope_display
+msgid "Envelope Display"
+msgstr "Envelope Display"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_backend__connection_state__error
+msgid "Error"
+msgstr "Error"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__error_code
+msgid "Error Code"
+msgstr "Error Code"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__event_type
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_search
+msgid "Event"
+msgstr "Event"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__event_id
+msgid "Event ID"
+msgstr "Event ID"
+
+#. module: backstage
+#: model:ir.actions.act_window,name:backstage.action_backstage_outbox
+#: model:ir.ui.menu,name:backstage.menu_backstage_events
+msgid "Events"
+msgstr "Events"
+
+#. module: backstage
+#: model_terms:ir.actions.act_window,help:backstage.action_backstage_review
+msgid ""
+"Events Magento rejected, or that have been retrying for a while, show up here\n"
+"               with what happened and what to do."
+msgstr ""
+"Events Magento rejected, or that have been retrying for a while, show up here\n"
+"               with what happened and what to do."
+
+#. module: backstage
+#: model_terms:ir.actions.act_window,help:backstage.action_backstage_outbox
+msgid "Every pickup, shipment, invoice or cancellation of a web order sends an event to Magento."
+msgstr "Every pickup, shipment, invoice or cancellation of a web order sends an event to Magento."
+
+#. module: backstage
+#: model_terms:ir.actions.act_window,help:backstage.action_backstage_review
+msgid "Everything reached Magento"
+msgstr "Everything reached Magento"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Export all now"
+msgstr "Export all now"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__stock_enabled
+#: model:ir.model.fields,field_description:backstage.field_backstage_source__export_stock
+msgid "Export stock"
+msgstr "Export stock"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_stock_preview__stock_sync
+#: model:ir.model.fields,field_description:backstage.field_product_template__backstage_stock_sync
+msgid "Export stock to Magento"
+msgstr "Export stock to Magento"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_stock_preview_form
+msgid "Export this product"
+msgstr "Export this product"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Fetch from Magento"
+msgstr "Fetch from Magento"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident__reason__short
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident_wizard_line__reason__short
+msgid "Fewer units"
+msgstr "Fewer units"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_stock_picking__backstage_web_supply
+msgid "First leg of a two-step web transfer (origin → transit)."
+msgstr "First leg of a two-step web transfer (origin → transit)."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "Fix it in the Magento tab of the order and link it again, then retry."
+msgstr "Fix it in the Magento tab of the order and link it again, then retry."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "Fix the cause in Odoo or Magento and retry. Discard it if it is no longer needed."
+msgstr "Fix the cause in Odoo or Magento and retry. Discard it if it is no longer needed."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "From now on customers receive Magento e-mails for their orders. Go live?"
+msgstr "From now on customers receive Magento e-mails for their orders. Go live?"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_outbox__envelope
+msgid "Full envelope sent to Magento (JSON)."
+msgstr "Full envelope sent to Magento (JSON)."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0
+msgid "Full stock export queued."
+msgstr "Full stock export queued."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Go live"
+msgstr "Go live"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__http_status
+msgid "HTTP status"
+msgstr "HTTP status"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Import from connector"
+msgstr "Import from connector"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__event_type__in_transit_to_store
+msgid "In transit to store"
+msgstr "In transit to store"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__incident_count
+msgid "Incident Count"
+msgstr "Incident Count"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+#: model_terms:ir.ui.view,arch_db:backstage.view_picking_form_backstage
+msgid "Incidents"
+msgstr "Incidents"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__document_ref__account_move
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__event_type__invoice_issued
+msgid "Invoice"
+msgstr "Invoice"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_outbox__magento_document_ids
+msgid "Invoices, shipments or credit memos created in Magento."
+msgstr "Invoices, shipments or credit memos created in Magento."
+
+#. module: backstage
+#: model_terms:ir.module.module,description:base.module_backstage
+msgid "Keeps a Magento store in sync with Odoo fulfilment"
+msgstr "Keeps a Magento store in sync with Odoo fulfilment"
+
+#. module: backstage
+#: model:ir.module.module,summary:base.module_backstage
+msgid ""
+"Keeps a Magento store in sync with Odoo fulfilment: pickups, shipments, invoices, credit notes and"
+" sellable stock."
+msgstr ""
+"Keeps a Magento store in sync with Odoo fulfilment: pickups, shipments, invoices, credit notes and"
+" sellable stock."
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__connection_checked_at
+msgid "Last check"
+msgstr "Last check"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_stock_preview__line_ids
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident_wizard__line_ids
+msgid "Line"
+msgstr "Line"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_order_form_backstage
+msgid "Link again"
+msgstr "Link again"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_sale_order__backstage_link_error
+msgid "Link problem"
+msgstr "Link problem"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_order_form_backstage
+msgid "Link with Magento"
+msgstr "Link with Magento"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__sale_order__backstage_link_state__linked
+msgid "Linked"
+msgstr "Linked"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_backend__state__active
+msgid "Live"
+msgstr "Live"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_source__source_code
+msgid "MSI source_code (case sensitive)."
+msgstr "MSI source_code (case sensitive)."
+
+#. module: backstage
+#: model:mail.activity.type,name:backstage.mail_activity_type_backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_order_form_backstage
+msgid "Magento"
+msgstr "Magento"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0 code:addons/backstage/models/sale_order.py:0
+#, python-format
+msgid "Magento %s: %s"
+msgstr "Magento %s: %s"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+#, python-format
+msgid "Magento (retry): %s"
+msgstr "Magento (retry): %s"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_store_view__magento_id
+msgid "Magento ID"
+msgstr "Magento ID"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_client.py:0
+msgid "Magento URL or token not configured"
+msgstr "Magento URL or token not configured"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_form
+msgid "Magento answer"
+msgstr "Magento answer"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0 code:addons/backstage/models/sale_order.py:0
+#, python-format
+msgid "Magento answered %(status)s: %(message)s"
+msgstr "Magento answered %(status)s: %(message)s"
+
+#. module: backstage
+#: model:ir.model,name:backstage.model_backstage_backend
+msgid "Magento connection"
+msgstr "Magento connection"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__magento_document_ids
+msgid "Magento documents"
+msgstr "Magento documents"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "Magento does not accept this step for the current status of the order."
+msgstr "Magento does not accept this step for the current status of the order."
+
+#. module: backstage
+#: model:ir.model,name:backstage.model_backstage_outbox
+msgid "Magento event"
+msgstr "Magento event"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_sale_order__backstage_outbox_ids
+msgid "Magento events"
+msgstr "Magento events"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/sale_order.py:0
+#, python-format
+msgid "We could not find web order %s. Check that the order number is correct."
+msgstr "We could not find web order %s. Check that the order number is correct."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+#, python-format
+msgid "Magento is not answering (%(status)s). Tried %(count)s times."
+msgstr "Magento is not answering (%(status)s). Tried %(count)s times."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_order_form_backstage
+msgid "Magento issues"
+msgstr "Magento issues"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_sale_order_line__magento_order_item_id
+msgid "Magento item"
+msgstr "Magento item"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_sale_order__backstage_link_state
+msgid "Magento link"
+msgstr "Magento link"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_sale_order__magento_increment_id
+msgid "Magento order"
+msgstr "Magento order"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_sale_order__magento_order_id
+msgid "Magento order ID"
+msgstr "Magento order ID"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "Magento rejected the access token or its permissions."
+msgstr "Magento rejected the access token or its permissions."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0
+msgid "Magento rejected the access token. Check the token."
+msgstr "Magento rejected the access token. Check the token."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+#, python-format
+msgid "Magento rejected the event (HTTP %s)."
+msgstr "Magento rejected the event (HTTP %s)."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+#, python-format
+msgid "Magento rejected the event: %s"
+msgstr "Magento rejected the event: %s"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+#, python-format
+msgid "Magento rejected: %s"
+msgstr "Magento rejected: %s"
+
+#. module: backstage
+#: model:ir.model,name:backstage.model_backstage_source
+msgid "Magento source"
+msgstr "Magento source"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_stock.py:0
+#, python-format
+msgid "Magento stock export %s: %s"
+msgstr "Magento stock export %s: %s"
+
+#. module: backstage
+#: model:ir.model,name:backstage.model_backstage_store_view
+msgid "Magento store view"
+msgstr "Magento store view"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/sale_order.py:0
+#, python-format
+msgid "Magento: %(doc)s (waiting for %(order)s to be linked)"
+msgstr "Magento: %(doc)s (waiting for %(order)s to be linked)"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+#, python-format
+msgid "Magento: %(type)s %(order)s"
+msgstr "Magento: %(type)s %(order)s"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/account_move.py:0 code:addons/backstage/models/stock_picking.py:0
+#, python-format
+msgid "Magento: %s not sent"
+msgstr "Magento: %s not sent"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/sale_order.py:0
+#, python-format
+msgid "Magento: link %s"
+msgstr "Magento: link %s"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_stock.py:0
+#, python-format
+msgid "Magento: stock of %s products"
+msgstr "Magento: stock of %s products"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/sale_order.py:0
+msgid "Magento: unknown source"
+msgstr "Magento: unknown source"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_stock_preview__missing_sku
+msgid "Missing Sku"
+msgstr "Missing Sku"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident__reason__over
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident_wizard_line__reason__over
+msgid "More units"
+msgstr "More units"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__name
+#: model:ir.model.fields,field_description:backstage.field_backstage_source__name
+#: model:ir.model.fields,field_description:backstage.field_backstage_store_view__name
+msgid "Name"
+msgstr "Name"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_source__name
+msgid "Name of the source in Magento."
+msgstr "Name of the source in Magento."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0
+msgid "No connector with a source mapping is installed."
+msgstr "No connector with a source mapping is installed."
+
+#. module: backstage
+#: model_terms:ir.actions.act_window,help:backstage.action_backstage_outbox
+msgid "No events sent to Magento yet"
+msgstr "No events sent to Magento yet"
+
+#. module: backstage
+#: model_terms:ir.actions.act_window,help:backstage.action_backstage_web_receipt_incident
+msgid "No open receipt incidents"
+msgstr "No open receipt incidents"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident__reason__unspecified
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_search
+msgid "No reason given"
+msgstr "No reason given"
+
+#. module: backstage
+#: model_terms:ir.actions.act_window,help:backstage.action_backstage_web_orders
+msgid "No web orders yet"
+msgstr "No web orders yet"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_backend__connection_state__unknown
+msgid "Not checked"
+msgstr "Not checked"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__sale_order__backstage_link_state__error
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Not linked"
+msgstr "Not linked"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_sales_order_filter_backstage
+msgid "Not linked with Magento"
+msgstr "Not linked with Magento"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident__reason__not_received
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident_wizard_line__reason__not_received
+msgid "Not received"
+msgstr "Not received"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "Nothing to do: it keeps retrying. If it lasts, check that the store is up."
+msgstr "Nothing to do: it keeps retrying. If it lasts, check that the store is up."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "Nothing to do: it will be retried automatically."
+msgstr "Nothing to do: it will be retried automatically."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Nothing will be sent to Magento until it is switched on again. Switch off?"
+msgstr "Nothing will be sent to Magento until it is switched on again. Switch off?"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Notifications"
+msgstr "Notifications"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__delivered_enabled
+msgid "Notify carrier delivery"
+msgstr "Notify carrier delivery"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_source__location_id
+msgid "Odoo location"
+msgstr "Odoo location"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_backend__state__draft
+msgid "Off"
+msgstr "Off"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_backend__state
+msgid ""
+"Off: nothing is sent to Magento.\n"
+"Test: everything is sent, but Magento sends no e-mail to customers.\n"
+"Live: customers are notified."
+msgstr ""
+"Off: nothing is sent to Magento.\n"
+"Test: everything is sent, but Magento sends no e-mail to customers.\n"
+"Live: customers are notified."
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_stock_preview_line__on_hand
+msgid "On hand"
+msgstr "On hand"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/stock_warehouse.py:0
+msgid "Only inventory or Backstage administrators can set up store pickup."
+msgstr "Only inventory or Backstage administrators can set up store pickup."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "Only rejected or retrying events can be discarded."
+msgstr "Only rejected or retrying events can be discarded."
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident__state__open
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_search
+msgid "Open"
+msgstr "Open"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_wizard_form
+msgid "Optional"
+msgstr "Optional"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__sale_order_id
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__document_ref__sale_order
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_search
+msgid "Order"
+msgstr "Order"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/sale_order.py:0
+msgid "Web order needs review"
+msgstr "Web order needs review"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Order progress"
+msgstr "Order progress"
+
+#. module: backstage
+#: model_terms:ir.actions.act_window,help:backstage.action_backstage_web_orders
+msgid "Orders that come from Magento show up here, with their link to the Magento order."
+msgstr "Orders that come from Magento show up here, with their link to the Magento order."
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__supply_picking_id
+#: model:ir.model.fields,field_description:backstage.field_stock_picking__backstage_supply_picking_id
+msgid "Original transfer"
+msgstr "Original transfer"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident__reason__other
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident_wizard_line__reason__other
+msgid "Other"
+msgstr "Other"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__sale_order__backstage_link_state__pending
+msgid "Pending"
+msgstr "Pending"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_stock_preview__pending_export
+msgid "Pending Export"
+msgstr "Pending Export"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident_wizard__picking_id
+msgid "Picking"
+msgstr "Picking"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_stock_warehouse__backstage_pickup_ready
+msgid "Pickup set up"
+msgstr "Pickup set up"
+
+#. module: backstage
+#: model_terms:ir.module.module,description:base.module_backstage
+msgid ""
+"Pickups, shipments, invoices, credit notes, cancellations and returns reach Magento as\n"
+"            idempotent events, so customers are kept informed. Sellable stock is exported per Magento\n"
+"            source, and web pickup transfers go through a store receipt with incident handling."
+msgstr ""
+"Pickups, shipments, invoices, credit notes, cancellations and returns reach Magento as\n"
+"            idempotent events, so customers are kept informed. Sellable stock is exported per Magento\n"
+"            source, and web pickup transfers go through a store receipt with incident handling."
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__event_type__preparing_at_warehouse
+msgid "Preparing at warehouse"
+msgstr "Preparing at warehouse"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__preparing_substate_id
+msgid "Preparing sub-state"
+msgstr "Preparing sub-state"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_stock_preview_line__preview_id
+msgid "Preview"
+msgstr "Preview"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__product_id
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident_wizard_line__product_id
+msgid "Product"
+msgstr "Product"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_stock_preview__product_tmpl_id
+msgid "Product Tmpl"
+msgstr "Product Tmpl"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__stock_batch_size
+msgid "Products per batch"
+msgstr "Products per batch"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__state__pending
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_search
+msgid "Queued"
+msgstr "Queued"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__event_type__ready_for_pickup
+#: model_terms:ir.ui.view,arch_db:backstage.view_order_form_backstage
+msgid "Ready for pickup"
+msgstr "Ready for pickup"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__reason
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident_wizard_line__reason
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_search
+msgid "Reason"
+msgstr "Reason"
+
+#. module: backstage
+#: model:ir.model,name:backstage.model_backstage_web_receipt_incident_wizard
+msgid "Reasons for web receipt differences"
+msgstr "Reasons for web receipt differences"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__picking_id
+msgid "Receipt"
+msgstr "Receipt"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/stock_picking.py:0
+#, python-format
+msgid "Receipt %s has differences: the customer is not notified."
+msgstr "Receipt %s has differences: the customer is not notified."
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_stock_warehouse__backstage_receipt_type_id
+msgid "Receipt (transit → stock) the store validates when the goods of a web order arrive."
+msgstr "Receipt (transit → stock) the store validates when the goods of a web order arrive."
+
+#. module: backstage
+#: model:ir.actions.act_window,name:backstage.action_backstage_web_receipt_incident
+#: model:ir.model.fields,field_description:backstage.field_stock_picking__backstage_incident_ids
+#: model:ir.ui.menu,name:backstage.menu_backstage_incidents
+msgid "Receipt incidents"
+msgstr "Receipt incidents"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_web_receipt_incident.py:0
+#, python-format
+msgid "Receipt incidents resolved: %s"
+msgstr "Receipt incidents resolved: %s"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__qty_received
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident_wizard_line__qty_received
+msgid "Received"
+msgstr "Received"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/stock_picking.py:0
+#, python-format
+msgid "Received in a later receipt (%s)."
+msgstr "Received in a later receipt (%s)."
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__state__rejected
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_search
+msgid "Rejected"
+msgstr "Rejected"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_form
+msgid "Reopen"
+msgstr "Reopen"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__res_id
+msgid "Res"
+msgstr "Res"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__res_model
+msgid "Res Model"
+msgstr "Res Model"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_stock_preview_line__reserved_other
+msgid "Reserved for other sales"
+msgstr "Reserved for other sales"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_stock_preview_line__reserved_other
+msgid "Reserved in Odoo for orders that do not come from Magento."
+msgstr "Reserved in Odoo for orders that do not come from Magento."
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__resolution
+msgid "Resolution"
+msgstr "Resolution"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_form
+msgid "Resolve"
+msgstr "Resolve"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident__state__resolved
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_search
+msgid "Resolved"
+msgstr "Resolved"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__resolved_by_id
+msgid "Resolved by"
+msgstr "Resolved by"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__resolved_date
+msgid "Resolved on"
+msgstr "Resolved on"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__response
+msgid "Response"
+msgstr "Response"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__response_display
+msgid "Response Display"
+msgstr "Response Display"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_form
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_review_list
+msgid "Retry"
+msgstr "Retry"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__state__failed
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_search
+msgid "Retrying"
+msgstr "Retrying"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__event_type__return_received
+msgid "Return received"
+msgstr "Return received"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__review_count
+msgid "Review Count"
+msgstr "Review Count"
+
+#. module: backstage
+#: model:res.groups,comment:backstage.group_backstage_user
+msgid "Sees Magento information on orders and transfers, and can retry or discard events."
+msgstr "Sees Magento information on orders and transfers, and can retry or discard events."
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_backend__stock_enabled
+msgid "Send the sellable quantity of every source marked \"Export stock\"."
+msgstr "Send the sellable quantity of every source marked \"Export stock\"."
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__qty_expected
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident_wizard_line__qty_expected
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__state__sent
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_search
+msgid "Sent"
+msgstr "Sent"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__sent_at
+msgid "Sent At"
+msgstr "Sent At"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_stock_preview_line__sellable
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_form
+msgid "Sent to Magento"
+msgstr "Sent to Magento"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "Sent to Magento."
+msgstr "Sent to Magento."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Set up"
+msgstr "Set up"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_warehouse_form_backstage
+msgid "Set up web pickup"
+msgstr "Set up web pickup"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__event_type__shipment_dispatched
+msgid "Shipped"
+msgstr "Shipped"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_stock_preview_line__shipped_unsent
+msgid "Shipped, not yet in Magento"
+msgstr "Shipped, not yet in Magento"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_sale_order__magento_shipping_method
+msgid "Shipping method"
+msgstr "Shipping method"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_source__ship_from
+msgid "Ships to customers"
+msgstr "Ships to customers"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__notification_mode__suppress
+msgid "Silent"
+msgstr "Silent"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_stock_preview_form
+msgid ""
+"Some variants have no internal reference: Magento cannot match them (SKU) and they are not sent."
+msgstr ""
+"Some variants have no internal reference: Magento cannot match them (SKU) and they are not sent."
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_stock_preview_line__source_id
+msgid "Source"
+msgstr "Source"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_source.py:0
+#, python-format
+msgid "Source %s needs an Odoo location before exporting its stock."
+msgstr "Source %s needs an Odoo location before exporting its stock."
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__source_ids
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Sources"
+msgstr "Sources"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Start test"
+msgstr "Start test"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__state
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__state
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__state
+msgid "State"
+msgstr "State"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_search
+msgid "Status"
+msgstr "Status"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Stock"
+msgstr "Stock"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0
+msgid "Stock export is switched off."
+msgstr "Stock export is switched off."
+
+#. module: backstage
+#: model:ir.model,name:backstage.model_backstage_stock
+msgid "Stock export to Magento"
+msgstr "Stock export to Magento"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/product_template.py:0
+#: code:addons/backstage/wizards/backstage_stock_preview.py:0
+#: model:ir.model,name:backstage.model_backstage_stock_preview
+msgid "Stock in Magento"
+msgstr "Stock in Magento"
+
+#. module: backstage
+#: model:ir.model,name:backstage.model_backstage_stock_preview_line
+msgid "Stock in Magento per source"
+msgstr "Stock in Magento per source"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_product_product__backstage_stock_dirty
+msgid "Stock must be exported to Magento again."
+msgstr "Stock must be exported to Magento again."
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_source__location_id
+msgid "Stock of this location (and its children) is the stock of the source."
+msgstr "Stock of this location (and its children) is the stock of the source."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_stock_preview_form
+msgid "Stop exporting this product"
+msgstr "Stop exporting this product"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__warehouse_id
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_search
+msgid "Store"
+msgstr "Store"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__url
+msgid "Store URL"
+msgstr "Store URL"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__note
+msgid "Store comment"
+msgstr "Store comment"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_sale_order__magento_is_pickup
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+#: model_terms:ir.ui.view,arch_db:backstage.view_sales_order_filter_backstage
+msgid "Store pickup"
+msgstr "Store pickup"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_sale_order__magento_store_code
+msgid "Store view"
+msgstr "Store view"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__store_view_ids
+msgid "Store views"
+msgstr "Store views"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Switch off"
+msgstr "Switch off"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_form
+msgid "Technical details"
+msgstr "Technical details"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_backend__delivered_enabled
+msgid "Tell Magento when carrier tracking marks a home delivery as delivered."
+msgstr "Tell Magento when carrier tracking marks a home delivery as delivered."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_wizard_form
+msgid ""
+"Tell us why each line differs. The customer will not be told the order is ready\n"
+"                    until the difference is sorted out."
+msgstr ""
+"Tell us why each line differs. The customer will not be told the order is ready\n"
+"                    until the difference is sorted out."
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_backend__state__test
+msgid "Test"
+msgstr "Test"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "Test connection"
+msgstr "Test connection"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0
+msgid "Test the connection first."
+msgstr "Test the connection first."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0
+msgid "The Magento connection cannot be deleted. Switch it off instead."
+msgstr "The Magento connection cannot be deleted. Switch it off instead."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/sale_order.py:0
+msgid ""
+"The customer was not told the order is being prepared: no location of the order belongs to a "
+"Magento source (Backstage → Configuration → Sources)."
+msgstr ""
+"The customer was not told the order is being prepared: no location of the order belongs to a "
+"Magento source (Backstage → Configuration → Sources)."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_order_form_backstage
+msgid "The customer will receive an e-mail saying the order can be collected. Continue?"
+msgstr "The customer will receive an e-mail saying the order can be collected. Continue?"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "The event ID must be unique."
+msgstr "The event ID must be unique."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0
+#, python-format
+msgid ""
+"The integration has no permission to read %(what)s. Grant it in Magento (System → Integrations)."
+msgstr ""
+"The integration has no permission to read %(what)s. Grant it in Magento (System → Integrations)."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+#, python-format
+msgid "The order could not be matched with a Magento order: %s"
+msgstr "The order could not be matched with a Magento order: %s"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_stock_preview_form
+msgid "The stock of this product is not sent to Magento."
+msgstr "The stock of this product is not sent to Magento."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/sale_order.py:0
+#, python-format
+msgid "These products are not in the Magento order: %s"
+msgstr "These products are not in the Magento order: %s"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0
+msgid "This URL does not answer as a Magento REST API. Check the store URL."
+msgstr "This URL does not answer as a Magento REST API. Check the store URL."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_form
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_review_list
+msgid "This event will not be sent to Magento. Discard it?"
+msgstr "This event will not be sent to Magento. Discard it?"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__timeout
+msgid "Timeout (s)"
+msgstr "Timeout (s)"
+
+#. module: backstage
+#: model:ir.actions.act_window,name:backstage.action_backstage_review
+#: model:ir.ui.menu,name:backstage.menu_backstage_review
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "To review"
+msgstr "To review"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_outbox_search
+msgid "Today"
+msgstr "Today"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_order_list_backstage
+msgid "Total"
+msgstr "Total"
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_outbox__document_ref__stock_picking
+msgid "Transfer"
+msgstr "Transfer"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid ""
+"Transfers that feed a web pickup order go through a transit location, and the store\n"
+"                                validates a <em>Web receipt</em> when the goods arrive. Until then they do not count\n"
+"                                as store stock and the customer is not told the order is ready."
+msgstr ""
+"Transfers that feed a web pickup order go through a transit location, and the store\n"
+"                                validates a <em>Web receipt</em> when the goods arrive. Until then they do not count\n"
+"                                as store stock and the customer is not told the order is ready."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_warehouse_form_backstage
+msgid ""
+"Transfers that feed web pickup orders of this store go through a transit location,\n"
+"                        and the store validates a web receipt when the goods arrive. Until then they count\n"
+"                        neither as store stock nor in Magento."
+msgstr ""
+"Transfers that feed web pickup orders of this store go through a transit location,\n"
+"                        and the store validates a web receipt when the goods arrive. Until then they count\n"
+"                        neither as store stock nor in Magento."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/stock_warehouse.py:0
+#, python-format
+msgid "Transit %s"
+msgstr "Transit %s"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_stock_warehouse__backstage_transit_location_id
+msgid ""
+"Transit location for transfers that feed web pickup orders of this store. It is not a Magento "
+"source: goods on the road are not for sale."
+msgstr ""
+"Transit location for transfers that feed web pickup orders of this store. It is not a Magento "
+"source: goods on the road are not for sale."
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident__reason__unexpected
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident_wizard_line__reason__unexpected
+msgid "Unexpected product"
+msgstr "Unexpected product"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__unlinked_order_count
+msgid "Unlinked Order Count"
+msgstr "Unlinked Order Count"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__unmapped_source_count
+msgid "Unmapped Source Count"
+msgstr "Unmapped Source Count"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_source__ship_from
+msgid "Untick for sources that never ship to a customer (e.g. supplier stock)."
+msgstr "Untick for sources that never ship to a customer (e.g. supplier stock)."
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_stock_preview__stock_sync
+#: model:ir.model.fields,help:backstage.field_product_template__backstage_stock_sync
+msgid "Untick to stop sending the stock of this product to the Magento sources."
+msgstr "Untick to stop sending the stock of this product to the Magento sources."
+
+#. module: backstage
+#: model:res.groups,name:backstage.group_backstage_user
+msgid "User"
+msgstr "User"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_stock_preview_line__product_id
+msgid "Variant"
+msgstr "Variant"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_backend__warehouse_ids
+msgid "Warehouses"
+msgstr "Warehouses"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__sale_order_id
+msgid "Web order"
+msgstr "Web order"
+
+#. module: backstage
+#: model:ir.actions.act_window,name:backstage.action_backstage_web_orders
+#: model:ir.ui.menu,name:backstage.menu_backstage_web_orders
+#: model_terms:ir.ui.view,arch_db:backstage.view_sales_order_filter_backstage
+msgid "Web orders"
+msgstr "Web orders"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_stock_preview_form
+msgid "Web orders are not subtracted here: Magento already reserves them."
+msgstr "Web orders are not subtracted here: Magento already reserves them."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_warehouse_form_backstage
+msgid "Web pickup"
+msgstr "Web pickup"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/stock_warehouse.py:0
+#: model:ir.model.fields,field_description:backstage.field_stock_warehouse__backstage_receipt_type_id
+msgid "Web receipt"
+msgstr "Web receipt"
+
+#. module: backstage
+#: model:ir.model,name:backstage.model_backstage_web_receipt_incident_wizard_line
+msgid "Web receipt difference"
+msgstr "Web receipt difference"
+
+#. module: backstage
+#: model:ir.model,name:backstage.model_backstage_web_receipt_incident
+msgid "Web receipt incident"
+msgstr "Web receipt incident"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/stock_picking.py:0
+#, python-format
+msgid "Web receipt incident %s"
+msgstr "Web receipt incident %s"
+
+#. module: backstage
+#: model:ir.ui.menu,name:backstage.menu_backstage_incidents_stock
+msgid "Web receipt incidents"
+msgstr "Web receipt incidents"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_web_receipt_incident__supply_picking_id
+#: model:ir.model.fields,help:backstage.field_stock_picking__backstage_supply_picking_id
+msgid "Web receipt: the transfer it comes from. Copied to the backorders of the receipt."
+msgstr "Web receipt: the transfer it comes from. Copied to the backorders of the receipt."
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_stock_warehouse__backstage_transit_location_id
+msgid "Web transit"
+msgstr "Web transit"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/stock_picking.py:0
+msgid "What arrived does not match what was sent"
+msgstr "What arrived does not match what was sent"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__problem
+msgid "What happened"
+msgstr "What happened"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_form
+msgid "What the store saw…"
+msgstr "What the store saw…"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_outbox__next_step
+msgid "What to do"
+msgstr "What to do"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_web_receipt_incident__resolution
+msgid "What was done about it."
+msgstr "What was done about it."
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_form
+msgid "What was done: resent, credited, written off…"
+msgstr "What was done: resent, credited, written off…"
+
+#. module: backstage
+#: model_terms:ir.actions.act_window,help:backstage.action_backstage_web_receipt_incident
+msgid ""
+"When a store receives less, more or something else than was sent for a web order,\n"
+"               the difference shows up here until someone resolves it. Shortages that arrive later close by themselves."
+msgstr ""
+"When a store receives less, more or something else than was sent for a web order,\n"
+"               the difference shows up here until someone resolves it. Shortages that arrive later close by themselves."
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_backend__preparing_substate_id
+msgid ""
+"When an order reaches this sub-state (e.g. sent to an external warehouse), the customer is told "
+"the order is being prepared."
+msgstr ""
+"When an order reaches this sub-state (e.g. sent to an external warehouse), the customer is told "
+"the order is being prepared."
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident_wizard_line__wizard_id
+msgid "Wizard"
+msgstr "Wizard"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_web_receipt_incident.py:0
+msgid "Write down how the incident was resolved."
+msgstr "Write down how the incident was resolved."
+
+#. module: backstage
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident__reason__wrong_item
+#: model:ir.model.fields.selection,name:backstage.selection__backstage_web_receipt_incident_wizard_line__reason__wrong_item
+msgid "Wrong product"
+msgstr "Wrong product"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_backstage_backend__url
+msgid "e.g. https://shop.example.com"
+msgstr "e.g. https://shop.example.com"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid "https://shop.example.com"
+msgstr "https://shop.example.com"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0
+msgid "inventory sources"
+msgstr "inventory sources"
+
+#. module: backstage
+#: model:ir.model.fields,help:backstage.field_sale_order_line__magento_order_item_id
+msgid "item_id of the Magento order line. Needed to mirror invoices and shipments."
+msgstr "item_id of the Magento order line. Needed to mirror invoices and shipments."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "no connection"
+msgstr "no connection"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_backend_form
+msgid ""
+"source(s) without an Odoo location:\n"
+"                                assign one, or archive the source if Odoo does not handle it."
+msgstr ""
+"source(s) without an Odoo location:\n"
+"                                assign one, or archive the source if Odoo does not handle it."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0
+msgid "store views"
+msgstr "store views"
+
+#. module: backstage
+#: model_terms:ir.ui.view,arch_db:backstage.view_backstage_stock_preview_form
+msgid "− Other sales"
+msgstr "− Other sales"

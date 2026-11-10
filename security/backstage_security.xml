@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_groups_privilege_backstage" model="res.groups.privilege">
+        <field name="name">Backstage</field>
+        <field name="sequence">90</field>
+        <field name="category_id" ref="base.module_category_sales_sales"/>
+    </record>
+
+    <record id="group_backstage_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="sequence">10</field>
+        <field name="privilege_id" ref="res_groups_privilege_backstage"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">Sees Magento information on orders and transfers, and can retry or discard events.</field>
+    </record>
+
+    <record id="group_backstage_manager" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="sequence">20</field>
+        <field name="privilege_id" ref="res_groups_privilege_backstage"/>
+        <field name="implied_ids" eval="[(4, ref('group_backstage_user'))]"/>
+        <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="comment">Also configures the Magento connection and sources, and resolves receipt incidents.</field>
+    </record>
+</odoo>

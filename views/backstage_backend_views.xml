@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_backstage_backend_form" model="ir.ui.view">
+        <field name="name">backstage.backend.form</field>
+        <field name="model">backstage.backend</field>
+        <field name="arch" type="xml">
+            <form create="false" delete="false">
+                <header>
+                    <button name="action_test_connection" type="object" string="Test connection"
+                            class="btn-primary" invisible="connection_state == 'ok'"/>
+                    <button name="action_test_connection" type="object" string="Test connection"
+                            invisible="connection_state != 'ok'"/>
+                    <field name="enabled" invisible="1"/>
+                    <field name="silent" invisible="1"/>
+                    <button name="action_enable" type="object" string="Enable" class="btn-primary"
+                            invisible="enabled or connection_state != 'ok'"/>
+                    <button name="action_disable" type="object" string="Disable"
+                            invisible="not enabled"
+                            confirm="Nothing will be sent to Magento until Backstage is enabled again. Disable it?"/>
+                    <!-- Interruptor amb confirmació: un camp boolean_toggle no permet demanar-la. -->
+                    <button name="action_notify_customers" type="object" string="Stealth mode ON" icon="fa-toggle-on"
+                            class="btn-warning" invisible="not silent"
+                            confirm="From now on customers will receive Magento e-mails about their orders. Enable it?"/>
+                    <button name="action_silent" type="object" string="Stealth mode OFF" icon="fa-toggle-off"
+                            class="btn-secondary" invisible="silent"
+                            confirm="From now on customers will receive no Magento e-mail about their orders. Continue?"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_review" type="object" class="oe_stat_button" icon="fa-inbox">
+                            <field name="review_count" widget="statinfo" string="To review"/>
+                        </button>
+                        <button name="action_view_incidents" type="object" class="oe_stat_button"
+                                icon="fa-exclamation-triangle" invisible="not incident_count">
+                            <field name="incident_count" widget="statinfo" string="Incidents"/>
+                        </button>
+                        <button name="action_view_unlinked_orders" type="object" class="oe_stat_button"
+                                icon="fa-chain-broken" invisible="not unlinked_order_count">
+                            <field name="unlinked_order_count" widget="statinfo" string="Not linked"/>
+                        </button>
+                    </div>
+
+                    <div class="alert alert-secondary" role="status" invisible="enabled">
+                        <strong>Disabled.</strong> Backstage is not sending anything to Magento.
+                        Test the connection, map the sources and set up the pickup stores, then enable it.
+                    </div>
+                    <div class="alert alert-warning" role="status" invisible="not enabled or not silent">
+                        <strong>Enabled, stealth mode ON.</strong> Everything is sent to Magento, but customers receive
+                        no e-mail about their orders. Work a few orders as usual and check that <em>To review</em>
+                        stays empty before notifying customers.
+                    </div>
+                    <div class="alert alert-success" role="status" invisible="not enabled or silent">
+                        <strong>Enabled.</strong> Everything is sent to Magento, and customers receive
+                        Magento e-mails about their orders.
+                    </div>
+
+                    <field name="connector_available" invisible="1"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+
+                    <notebook>
+                        <page string="Connection" name="connection">
+                            <group>
+                                <group>
+                                    <field name="url" placeholder="https://shop.example.com"/>
+                                    <field name="token" password="True"/>
+                                    <field name="timeout"/>
+                                </group>
+                                <group>
+                                    <field name="connection_state" widget="badge"
+                                           decoration-success="connection_state == 'ok'"
+                                           decoration-danger="connection_state == 'error'"/>
+                                    <field name="connection_message" nolabel="1" colspan="2"
+                                           invisible="not connection_message"
+                                           class="text-muted"/>
+                                    <field name="connection_checked_at" invisible="not connection_checked_at"/>
+                                </group>
+                            </group>
+                            <field name="store_view_ids" invisible="not store_view_ids" readonly="1">
+                                <list>
+                                    <field name="magento_id"/>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <page string="Sources" name="sources">
+                            <div class="alert alert-warning" role="status" invisible="not unmapped_source_count">
+                                <field name="unmapped_source_count" class="fw-bold"/> source(s) without an Odoo location:
+                                assign one, or archive the source if Odoo does not handle it.
+                            </div>
+                            <p class="text-muted">
+                                Each Magento source is the stock of one Odoo location. Tick <em>Export stock</em>
+                                only on sources no other system updates: each source must be updated by a single system.
+                            </p>
+                            <div class="mb-2">
+                                <button name="action_sync_sources" type="object" string="Fetch from Magento"
+                                        class="btn-secondary" icon="fa-refresh"/>
+                                <button name="action_import_from_connector" type="object" string="Import from connector"
+                                        class="btn-link" invisible="not connector_available"/>
+                            </div>
+                            <field name="source_ids" nolabel="1" context="{'active_test': False}">
+                                <list editable="bottom" decoration-warning="not location_id" decoration-muted="not active">
+                                    <field name="source_code"/>
+                                    <field name="name"/>
+                                    <field name="location_id"/>
+                                    <field name="ship_from"/>
+                                    <field name="export_stock" readonly="not location_id"/>
+                                    <field name="active" widget="boolean_toggle" optional="hide"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <page string="Store pickup" name="pickup">
+                            <p class="text-muted">
+                                Transfers that feed a web pickup order go through a transit location, and the store
+                                validates a <em>Web receipt</em> when the goods arrive. Until then they do not count
+                                as store stock and the customer is not told the order is ready.
+                            </p>
+                            <field name="warehouse_ids" nolabel="1" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="code"/>
+                                    <field name="backstage_pickup_ready" widget="boolean"/>
+                                    <field name="backstage_transit_location_id" optional="hide"/>
+                                    <field name="backstage_receipt_type_id" optional="hide"/>
+                                    <button name="action_backstage_setup_pickup" type="object" string="Set up"
+                                            icon="fa-magic" invisible="backstage_pickup_ready"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <page string="Notifications" name="notifications">
+                            <group>
+                                <group string="Order progress">
+                                    <field name="preparing_substate_id"/>
+                                    <field name="delivered_enabled"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Stock" name="stock">
+                            <group>
+                                <group>
+                                    <field name="stock_enabled"/>
+                                    <field name="stock_batch_size" invisible="not stock_enabled"/>
+                                </group>
+                                <group invisible="not stock_enabled">
+                                    <div colspan="2" class="text-muted">
+                                        Changed products are sent every few minutes, and every night all of them.
+                                        The <em>Stock in Magento</em> button of a product shows what is sent and why.
+                                    </div>
+                                    <button name="action_export_stock_now" type="object" string="Export all now"
+                                            class="btn-secondary" icon="fa-upload" colspan="2"
+                                            invisible="not enabled"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_backstage_backend" model="ir.actions.act_window">
+        <field name="name">Configuration</field>
+        <field name="res_model">backstage.backend</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="backend_magento"/>
+    </record>
+</odoo>

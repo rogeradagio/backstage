@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_backstage_root" name="Backstage" sequence="45"
+              web_icon="backstage,static/description/icon.svg"
+              groups="backstage.group_backstage_user"/>
+
+    <menuitem id="menu_backstage_review" name="To review" parent="menu_backstage_root"
+              action="action_backstage_review" sequence="10"/>
+    <menuitem id="menu_backstage_web_orders" name="Web orders" parent="menu_backstage_root"
+              action="action_backstage_web_orders" sequence="20"/>
+    <menuitem id="menu_backstage_incidents" name="Receipt incidents" parent="menu_backstage_root"
+              action="action_backstage_web_receipt_incident" sequence="30"/>
+    <menuitem id="menu_backstage_events" name="Events" parent="menu_backstage_root"
+              action="action_backstage_outbox" sequence="40"/>
+    <menuitem id="menu_backstage_configuration" name="Configuration" parent="menu_backstage_root"
+              action="action_backstage_backend" sequence="90"
+              groups="backstage.group_backstage_manager"/>
+
+    <!-- Les botigues hi arriben des d'Inventari, sense necessitar l'app. -->
+    <menuitem id="menu_backstage_incidents_stock" name="Web receipt incidents" parent="stock.menu_stock_transfers"
+              action="action_backstage_web_receipt_incident" sequence="90"/>
+</odoo>
