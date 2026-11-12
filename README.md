@@ -80,7 +80,11 @@ Els catàlegs són a `i18n/ca.po`, `i18n/es.po` i `i18n/en.po`; `i18n/backstage.
 ## Permisos
 
 - **Backstage / Usuari**: veu l'app i la informació de Magento a comandes i albarans, i pot reintentar o descartar enviaments.
-- **Backstage / Administrador**: a més, accedeix a la configuració i resol incidències.
+- **Backstage / Administrador / Administradors d'inventari**: a més, accedeix a la configuració i resol incidències.
 - Les botigues no necessiten cap grup: el botó **Llest per recollir** i l'assistent de diferències són a la comanda i a la recepció, i les incidències també són a **Inventari → Operacions**.
 
 Els detalls tècnics (contracte amb Magento, càlcul de l'estoc, reintents) són a [docs/TECHNICAL.md](docs/TECHNICAL.md).
+
+## Llicència
+
+MIT. Vegeu [LICENSE](LICENSE).

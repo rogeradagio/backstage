@@ -5,7 +5,7 @@
     "version": "19.0.2.1.0",
     "category": "Sales/Sales",
     "author": "roger pedrol",
-    "license": "LGPL-3",
+    "license": "Other OSI approved licence",
     "depends": [
         "mail",
         "sale_stock",
