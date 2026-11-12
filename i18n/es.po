@@ -49,6 +49,12 @@ msgstr ""
 
 #. module: backstage
 #. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "%(method)s cannot be used to rebuild a %(model)s document."
+msgstr "%(method)s no se puede usar para volver a generar un documento %(model)s."
+
+#. module: backstage
+#. odoo-python
 #: code:addons/backstage/models/stock_picking.py:0
 msgid "%(product)s: %(missing)s missing; reserved for %(holders)s"
 msgstr "%(product)s: faltan %(missing)s; reservado para %(holders)s"
@@ -329,6 +335,11 @@ msgstr "Backstage: conciliación completa del stock con Magento"
 #: model:ir.actions.server,name:backstage.cron_backstage_link_pending_ir_actions_server
 msgid "Backstage: link pending orders with Magento"
 msgstr "Backstage: vincular con Magento los pedidos pendientes"
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__can_resolve
+msgid "Can Resolve"
+msgstr "Puede resolver"
 
 #. module: backstage
 #: model_terms:ir.ui.view,arch_db:backstage.view_backstage_web_receipt_incident_wizard_form
@@ -1333,6 +1344,24 @@ msgstr "Ubicación de Odoo"
 #: model:ir.model.fields,field_description:backstage.field_backstage_stock_preview_line__on_hand
 msgid "On hand"
 msgstr "Existencias físicas"
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0
+msgid "Only Backstage administrators can change the Magento connection."
+msgstr "Solo los administradores de Backstage pueden cambiar la conexión con Magento."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "Only Backstage users can retry or discard Magento events."
+msgstr "Solo los usuarios de Backstage pueden reintentar o descartar eventos de Magento."
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_web_receipt_incident.py:0
+msgid "Only inventory or Backstage administrators can resolve or reopen receipt incidents."
+msgstr "Solo los administradores de inventario o de Backstage pueden resolver o reabrir las incidencias de recepción."
 
 #. module: backstage
 #. odoo-python

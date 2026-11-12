@@ -2,7 +2,7 @@
 
 import json
 
-from odoo.tests import TransactionCase, tagged
+from odoo.tests import TransactionCase, new_test_user, tagged
 
 from odoo.addons.queue_job.tests.common import trap_jobs
 
@@ -256,6 +256,23 @@ class TestWebTransfer(TransactionCase):
         self.assertFalse(backorder.backstage_incident_ids)
         self.assertEqual(incident.state, "open")
         self.assertEqual(len(order.backstage_outbox_ids.filtered(lambda o: o.event_type == "ready_for_pickup")), 1)
+
+    def test_store_can_declare_twice(self):
+        """La botiga cancel·la el backorder i torna a validar: els esborranys anteriors s'han de poder substituir."""
+        store_user = new_test_user(self.env, login="bk_store_twice", groups="stock.group_stock_user")
+        order = self._pickup_order(5)
+        _supply, receipt = self._departed_receipt(order, 5)
+        receipt.move_ids.write({"quantity": 4, "picked": True})
+        receipt = receipt.with_user(store_user)
+        for reason in ("damaged", "wrong_item"):
+            action = receipt.button_validate()
+            wizard = self.env[action["res_model"]].with_user(store_user).browse(action["res_id"])
+            wizard.line_ids.reason = reason
+            backorder_action = wizard.action_confirm()   # la botiga tanca el diàleg del backorder sense triar
+            self.assertEqual(backorder_action["res_model"], "stock.backorder.confirmation")
+        drafts = receipt.sudo().backstage_incident_ids
+        self.assertEqual((drafts.state, drafts.reason), ("draft", "wrong_item"))
+        self.assertFalse(drafts.with_user(store_user).can_resolve)
 
     def test_unexpected_product_is_declared(self):
         other = self.env["product.product"].create({"name": "Pua", "default_code": "PUA-1", "type": "consu", "is_storable": True})

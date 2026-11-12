@@ -5,7 +5,7 @@ import logging
 from datetime import datetime, timezone
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import AccessError, UserError, ValidationError
 
 from odoo.addons.queue_job.exception import RetryableJobError
 from odoo.addons.queue_job.job import identity_exact
@@ -37,6 +37,13 @@ EVENT_TYPES = [
     ("pending_link", "Not sent: order not linked"),
 ]
 NOT_LINKED = "order_not_linked"
+
+# Documents que es poden retenir fins que la comanda es vinculi, i l'únic mètode que els torna a generar.
+# _resume_after_link l'executa amb sudo: mai s'ha de cridar un mètode que no sigui en aquesta llista.
+HOLD_METHODS = {
+    "stock.picking": ("_backstage_emit_shipment", "_backstage_emit_return"),
+    "account.move": ("_backstage_emit_document",),
+}
 
 
 class BackstageOutbox(models.Model):
@@ -89,6 +96,15 @@ class BackstageOutbox(models.Model):
     _event_id_uniq = models.Constraint(
         "unique(event_id)", lambda env, diagnostics: env._("The event ID must be unique."),
     )
+
+    @api.constrains("res_model", "retry_method")
+    def _check_retry_method(self):
+        for outbox in self.filtered("retry_method"):
+            if outbox.retry_method not in HOLD_METHODS.get(outbox.res_model, ()):
+                raise ValidationError(_(
+                    "%(method)s cannot be used to rebuild a %(model)s document.",
+                    method=outbox.retry_method, model=outbox.res_model,
+                ))
 
     @api.depends("event_type", "sale_order_id.name", "res_model", "res_id")
     @api.depends_context("lang")
@@ -263,8 +279,13 @@ class BackstageOutbox(models.Model):
         ], order="id")  # en l'ordre en què van passar: l'expedició abans que la factura
         documents, events = held.filtered("retry_method"), held.filtered(lambda o: not o.retry_method)
         for outbox in documents:
-            record = self.env[outbox.res_model].sudo().browse(outbox.res_id).exists()
             method = outbox.retry_method
+            if method not in HOLD_METHODS.get(outbox.res_model, ()):
+                # La restricció ho impedeix; això només pot venir d'una escriptura directa a la base de dades.
+                _logger.warning("Backstage: held event %s ignored: %s.%s is not allowed",
+                                outbox.event_id, outbox.res_model, method)
+                continue
+            record = self.env[outbox.res_model].sudo().browse(outbox.res_id).exists()
             outbox.unlink()
             if record:
                 getattr(record, method)()
@@ -350,25 +371,34 @@ class BackstageOutbox(models.Model):
 
     # ------------------------------------------------------------------ accions
 
+    def _check_backstage_user(self):
+        """Els usuaris no poden escriure a la cua (només llegir-la): les accions escriuen amb sudo
+        després de comprovar el grup, i només canvien l'estat, mai el contingut de l'esdeveniment."""
+        if not self.env.su and not self.env.user.has_group("backstage.group_backstage_user"):
+            raise AccessError(_("Only Backstage users can retry or discard Magento events."))
+
     def action_retry(self):
         """Reintent manual (mateix event_id i payload). Un document retingut torna a provar la vinculació."""
+        self._check_backstage_user()
         for outbox in self:
             if outbox.state not in ("rejected", "discarded"):
                 raise UserError(_("%s is not waiting for a retry.", outbox.display_name))
             if outbox.retry_method:
                 # Si la vinculació funciona, _resume_after_link el torna a generar i l'esborra.
+                # Amb els permisos de l'usuari sobre la comanda.
                 outbox.sale_order_id.action_backstage_link()
                 continue
-            outbox.write({"state": "pending"})
-            outbox._enqueue_job(_("Magento (retry): %s", outbox.event_id))
+            outbox.sudo().write({"state": "pending"})
+            outbox.sudo()._enqueue_job(_("Magento (retry): %s", outbox.event_id))
         return True
 
     def action_discard(self):
         """Ja no cal enviar-lo (p. ex. s'ha resolt a mà a Magento)."""
+        self._check_backstage_user()
         for outbox in self:
             if outbox.state not in ("rejected", "failed"):
                 raise UserError(_("Only rejected or retrying events can be discarded."))
-        self.write({"state": "discarded"})
+        self.sudo().write({"state": "discarded"})
         self._close_activity(_("Discarded by %s.", self.env.user.name))
         self._release_shipped_stock()
         return True

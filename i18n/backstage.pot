@@ -41,6 +41,12 @@ msgstr ""
 
 #. module: backstage
 #. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "%(method)s cannot be used to rebuild a %(model)s document."
+msgstr ""
+
+#. module: backstage
+#. odoo-python
 #: code:addons/backstage/models/stock_picking.py:0
 msgid "%(product)s: %(missing)s missing; reserved for %(holders)s"
 msgstr ""
@@ -293,6 +299,11 @@ msgstr ""
 #. module: backstage
 #: model:ir.actions.server,name:backstage.cron_backstage_link_pending_ir_actions_server
 msgid "Backstage: link pending orders with Magento"
+msgstr ""
+
+#. module: backstage
+#: model:ir.model.fields,field_description:backstage.field_backstage_web_receipt_incident__can_resolve
+msgid "Can Resolve"
 msgstr ""
 
 #. module: backstage
@@ -1262,6 +1273,24 @@ msgstr ""
 #. module: backstage
 #: model:ir.model.fields,field_description:backstage.field_backstage_stock_preview_line__on_hand
 msgid "On hand"
+msgstr ""
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_backend.py:0
+msgid "Only Backstage administrators can change the Magento connection."
+msgstr ""
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_outbox.py:0
+msgid "Only Backstage users can retry or discard Magento events."
+msgstr ""
+
+#. module: backstage
+#. odoo-python
+#: code:addons/backstage/models/backstage_web_receipt_incident.py:0
+msgid "Only inventory or Backstage administrators can resolve or reopen receipt incidents."
 msgstr ""
 
 #. module: backstage

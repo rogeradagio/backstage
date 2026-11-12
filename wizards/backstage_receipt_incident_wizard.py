@@ -18,7 +18,9 @@ class BackstageWebReceiptIncidentWizard(models.TransientModel):
         self.ensure_one()
         picking = self.picking_id
         Incident = self.env["backstage.web.receipt.incident"]
-        Incident.search([("picking_id", "=", picking.id), ("state", "=", "draft")]).unlink()
+        # La botiga no pot esborrar incidències (així no pot fer desaparèixer les obertes):
+        # només s'esborren, amb sudo, els esborranys d'aquesta recepció (es tornen a crear tot seguit).
+        Incident.search([("picking_id", "=", picking.id), ("state", "=", "draft")]).sudo().unlink()
         Incident.create([{
             "picking_id": picking.id,
             "product_id": line.product_id.id,

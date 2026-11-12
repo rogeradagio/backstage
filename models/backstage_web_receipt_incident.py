@@ -1,7 +1,7 @@
 """registra i resol les diferències detectades en la recepció de traspassos web."""
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import AccessError, UserError
 
 REASONS = [
     ("not_received", "Not received"),
@@ -17,6 +17,9 @@ REASONS = [
 SELF_RESOLVING_REASONS = ("short", "not_received", "unspecified")
 
 PRECISION = 0.0001
+
+# Només els administradors (d'inventari o de Backstage) resolen: les botigues declaren, no tanquen.
+RESOLUTION_FIELDS = {"resolution", "resolved_by_id", "resolved_date"}
 
 
 def suggested_reason(expected, received):
@@ -54,6 +57,7 @@ class BackstageWebReceiptIncident(models.Model):
     resolution = fields.Text(tracking=True, help="What was done about it.")
     resolved_by_id = fields.Many2one("res.users", string="Resolved by", readonly=True)
     resolved_date = fields.Datetime(string="Resolved on", readonly=True)
+    can_resolve = fields.Boolean(compute="_compute_can_resolve")
 
     @api.depends("picking_id.name", "product_id.display_name")
     @api.depends_context("lang")
@@ -66,7 +70,40 @@ class BackstageWebReceiptIncident(models.Model):
         for incident in self:
             incident.difference = incident.qty_received - incident.qty_expected
 
+    # ------------------------------------------------------------------ permisos
+
+    def _user_can_resolve(self):
+        user = self.env.user
+        return user.has_group("stock.group_stock_manager") or user.has_group("backstage.group_backstage_manager")
+
+    @api.depends_context("uid")
+    def _compute_can_resolve(self):
+        allowed = self._user_can_resolve()
+        for incident in self:
+            incident.can_resolve = allowed
+
+    def _check_can_resolve(self):
+        if not self.env.su and not self._user_can_resolve():
+            raise AccessError(_("Only inventory or Backstage administrators can resolve or reopen receipt incidents."))
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        if any(RESOLUTION_FIELDS & set(vals) or vals.get("state") == "resolved" for vals in vals_list):
+            self._check_can_resolve()
+        return super().create(vals_list)
+
+    def write(self, vals):
+        # El botó només s'amaga a la vista: el permís d'escriptura de les botigues no ha de servir per tancar-les.
+        if RESOLUTION_FIELDS & set(vals) or (
+            "state" in vals and (vals["state"] == "resolved" or any(i.state == "resolved" for i in self))
+        ):
+            self._check_can_resolve()
+        return super().write(vals)
+
+    # ------------------------------------------------------------------ accions
+
     def action_resolve(self):
+        self._check_can_resolve()
         if any(not incident.resolution for incident in self):
             raise UserError(_("Write down how the incident was resolved."))
         self.write({"state": "resolved", "resolved_by_id": self.env.uid, "resolved_date": fields.Datetime.now()})
@@ -78,5 +115,6 @@ class BackstageWebReceiptIncident(models.Model):
         return True
 
     def action_reopen(self):
+        self._check_can_resolve()
         self.write({"state": "open", "resolved_by_id": False, "resolved_date": False})
         return True

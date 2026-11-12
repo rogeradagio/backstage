@@ -1,7 +1,7 @@
 """connexió amb Magento: un únic registre que conté tota la configuració de Backstage."""
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import AccessError, UserError
 
 from .backstage_outbox import REVIEW_DOMAIN
 
@@ -104,6 +104,12 @@ class BackstageBackend(models.Model):
     def _is_silent(self):
         return self.silent
 
+    def _check_manager(self):
+        """Les accions de configuració escriuen amb sudo (fonts, store views) o encuen feina:
+        el permís de lectura dels usuaris no ha de bastar per cridar-les per RPC."""
+        if not self.env.su and not self.env.user.has_group("backstage.group_backstage_manager"):
+            raise AccessError(_("Only Backstage administrators can change the Magento connection."))
+
     @api.ondelete(at_uninstall=False)
     def _unlink_except_main(self):
         raise UserError(_("The Magento connection cannot be deleted. Switch it off instead."))
@@ -112,6 +118,7 @@ class BackstageBackend(models.Model):
 
     def action_test_connection(self):
         """Comprova URL, token i permisos, i porta les store views i les fonts de Magento."""
+        self._check_manager()
         self.ensure_one()
         client = self.env["backstage.client"]
         views = client.get_store_views()
@@ -195,23 +202,28 @@ class BackstageBackend(models.Model):
     # ------------------------------------------------------------------ estat
 
     def action_enable(self):
+        self._check_manager()
         self.ensure_one()
         if self.connection_state != "ok":
             raise UserError(_("Test the connection first."))
         self.enabled = True
 
     def action_disable(self):
+        self._check_manager()
         self.enabled = False
 
     def action_notify_customers(self):
+        self._check_manager()
         self.silent = False
 
     def action_silent(self):
+        self._check_manager()
         self.silent = True
 
     # ------------------------------------------------------------------ fonts
 
     def action_sync_sources(self):
+        self._check_manager()
         self.ensure_one()
         response = self.env["backstage.client"].get_sources()
         if not response.ok:
@@ -222,6 +234,7 @@ class BackstageBackend(models.Model):
 
     def action_import_from_connector(self):
         """Crea les fonts a partir del mapatge d'un connector existent (external.stock.location.line)."""
+        self._check_manager()
         self.ensure_one()
         if not self.connector_available:
             raise UserError(_("No connector with a source mapping is installed."))
@@ -240,6 +253,7 @@ class BackstageBackend(models.Model):
     # ------------------------------------------------------------------ estoc
 
     def action_export_stock_now(self):
+        self._check_manager()
         self.ensure_one()
         if not self.stock_enabled:
             raise UserError(_("Stock export is switched off."))

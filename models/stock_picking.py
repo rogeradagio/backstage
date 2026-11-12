@@ -280,7 +280,8 @@ class StockPicking(models.Model):
             else:
                 incident = Incident.create(dict(values, picking_id=self.id, product_id=product.id))
             incidents |= incident
-        (drafts - incidents).unlink()
+        # Esborranys que ja no corresponen a cap diferència. La botiga no té permís d'esborrar: només esborranys, amb sudo.
+        (drafts - incidents).sudo().unlink()
         return incidents
 
     def _backstage_resolve_completed_incidents(self):
@@ -294,6 +295,8 @@ class StockPicking(models.Model):
         ])
         done = pending.filtered(lambda i: abs(sent.get(i.product_id, 0.0) - received.get(i.product_id, 0.0)) <= PRECISION)
         if done:
+            # Tancament automàtic en validar la recepció (la valida la botiga, que no pot resoldre a mà).
+            done = done.sudo()
             done.write({"resolution": _("Received in a later receipt (%s).", self.name)})
             done.action_resolve()
 

@@ -54,7 +54,9 @@
                     </group>
                     <group>
                         <field name="note" readonly="state == 'resolved'" placeholder="What the store saw…"/>
-                        <field name="resolution" readonly="state == 'resolved'" invisible="state == 'draft'"
+                        <!-- Només els administradors resolen: la botiga veu la resolució, però no l'edita. -->
+                        <field name="resolution" readonly="state == 'resolved' or not can_resolve"
+                               invisible="state == 'draft' or (not can_resolve and not resolution)"
                                placeholder="What was done: resent, credited, written off…"/>
                         <field name="resolved_by_id" invisible="state != 'resolved'"/>
                         <field name="resolved_date" invisible="state != 'resolved'"/>

@@ -5,7 +5,7 @@ access_backstage_store_view_user,backstage.store.view user,model_backstage_store
 access_backstage_store_view_manager,backstage.store.view manager,model_backstage_store_view,group_backstage_manager,1,1,1,1
 access_backstage_source_user,backstage.source user,model_backstage_source,group_backstage_user,1,0,0,0
 access_backstage_source_manager,backstage.source manager,model_backstage_source,group_backstage_manager,1,1,1,1
-access_backstage_outbox_user,backstage.outbox user,model_backstage_outbox,group_backstage_user,1,1,0,0
+access_backstage_outbox_user,backstage.outbox user,model_backstage_outbox,group_backstage_user,1,0,0,0
 access_backstage_outbox_manager,backstage.outbox manager,model_backstage_outbox,group_backstage_manager,1,1,1,1
 access_backstage_incident_stock_user,backstage.web.receipt.incident stock user,model_backstage_web_receipt_incident,stock.group_stock_user,1,1,1,0
 access_backstage_incident_stock_manager,backstage.web.receipt.incident stock manager,model_backstage_web_receipt_incident,stock.group_stock_manager,1,1,1,1
